@@ -1,0 +1,29 @@
+---
+# tasks file for apache
+- name: install httpd
+  yum:
+    name: "{{ web_svc }}"
+    state: installed
+
+
+- name: start httpd
+  service:
+    name: "{{ web_svc }}"
+    state: started
+
+
+- name: copy  index.html files
+  copy:
+     src: code/
+     dest: "{{ web_root }}"
+
+- include_vars: abc.yml
+
+
+- name: copy  jinja  file
+  template:
+       src: web.conf.j2
+       dest: "{{ apache_conf }}"
+  notify: apache_restart
+
+- import_tasks: firewall.yml

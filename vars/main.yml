@@ -1,0 +1,4 @@
+---
+# vars file for apache
+web_svc: httpd
+
