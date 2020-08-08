@@ -1,0 +1,7 @@
+- name: install  ftp
+  yum:
+    name: ftp
+    state: installed
+
+
+
